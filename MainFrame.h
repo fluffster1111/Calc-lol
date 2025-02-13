@@ -13,6 +13,7 @@ private:
 
 public:
 	wxStaticText* output;
+
 	wxChoice* sign;
 	wxArrayString choices;
 	wxString choice;
@@ -25,9 +26,15 @@ public:
 	wxButton* divide;
 	wxButton* ans;
 	wxButton* power;
-	wxButton* root;
+	wxButton* root2;
+	wxButton* rootnn;
 	wxButton* power2;
 	wxButton* clear;
+
+	wxUniChar root;
+	wxUniChar xn;
+	wxUniChar xx;
+	
 	
 	double number1;
 	double number2;
