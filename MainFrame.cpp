@@ -1,7 +1,6 @@
 ﻿#include "MainFrame.h"
 #include <wx/wx.h>
 #include <iostream>
-#include <cmath>
 
 
 enum IDs {
@@ -49,7 +48,7 @@ MainFrame::MainFrame(const wxString& title)
 	wxFont font1(24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 	output->SetFont(font1);
 
-	wxString root_n = wxString::Format("%c%c", xn, root);
+	wxString root_n = wxString::Format("%c%c", xn, root); //nth root
 
 	choices.Add("Operators"); //0
 	choices.Add("+");	//1
@@ -103,7 +102,7 @@ MainFrame::MainFrame(const wxString& title)
 	calc = new wxButton(panel, BUTTON_ID, "=", wxPoint(400, 340), wxSize(110, 50));
 	calc->SetBackgroundColour(wxColour(150, 150, 150));
 
-	ans = new wxButton(panel, ANS_ID, "ANS", wxPoint(345, 170), wxSize(100, 30));
+	ans = new wxButton(panel, ANS_ID, "ANS", wxPoint(340, 340), wxSize(50, 50));
 	ans->SetBackgroundColour(wxColour(150, 150, 150));
 }
 
@@ -208,8 +207,14 @@ void MainFrame::calculate(wxCommandEvent& evt)
 		output->SetLabel(wxString::Format("%g%s = %g", number1, wxString(xx), result));
 	}
 	else if (choice == choices[8]) {
-		result = pow(number1, (1/number2));
-		output->SetLabel(wxString::Format("%g^%s%g = %g",number2, wxString(root), number1, result));
+		if (number2 != 0) {
+			result = pow(number1, (1 / number2));
+			output->SetLabel(wxString::Format("%g^%s%g = %g", number2, wxString(root), number1, result));
+		}
+		else {
+			wxMessageBox("Please enter valid number", "Invalid", wxOK | wxICON_ERROR);
+		}
+		
 	}
 	
 }
